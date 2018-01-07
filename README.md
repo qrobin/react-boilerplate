@@ -1,6 +1,6 @@
 # QR boilerplate
 
-A super cool boilerplate I've created for myself to simplify react app creation start. BTW will I be happy if it will come in handy for someone else.
+A super cool boilerplate I've created for myself to simplify react app creation startup.
 
 Check the info below how to use it.
  
