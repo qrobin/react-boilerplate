@@ -8,7 +8,7 @@ Check the info below how to use it.
 
 |||
 | --- | --- |
-  [react](https://reactjs.org/)  | A library for painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. |
+  [react](https://reactjs.org/)  | A library for interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes. |
 | [redux](https://redux.js.org/)  | A predictable state container for JavaScript apps.  |
 | [redux&nbsp;saga](https://redux-saga.js.org/)  | A library that aims to make application side effects (i.e. asynchronous things like data fetching and impure things like accessing the browser cache) easier to manage, more efficient to execute, simple to test, and better at handling failures.  |
 | [redux&nbsp;logger](https://github.com/evgenyrodionov/redux-logger)  | Logger for Redux.  |
@@ -21,15 +21,25 @@ Check the info below how to use it.
 ### 1. Actions
 Check the `src/utils/redux.js` file. You'll find there a small utility that creates action constants for you. Just ignore that file, it just works.
  
- There are two actions subdivisions in our app — **sync** and **async**. So, in `src/constants/asyncActions.js` you can find an `'EXAMPLE'` action type. Since it is an asynchronous action, it is automatically divided into 3 action types: 
- `'EXAMPLE_REQUEST', 'EXAMPLE_SUCCESS', 'EXAMPLE_FAILURE'`. The best way to manage that is to use `'EXAMPLE_REQUEST'` as a saga pointer, where you can make all your async actions, and depending on result of that actions you can call `'EXAMPLE_SUCCESS'` or `'EXAMPLE_FAILURE'` action, which is used as a reducer pointer to put data into your redux store.
+ There are two actions subdivisions in our app — **sync** and **async**. 
  
- So if you need to create new async action, follow these steps:
- 1. Create an action type [ACTION] in `src/constants/asyncActions.js`
- 2. Create a saga in `src/sagas/[ACTION].js`, check the syntax in example saga. Use '[ACTION]_REQUEST' string as a pointer in saga's export. Inside saga make a http request, get youd data, modify it and `put()` into redux store with `'[ACTION]_SUCCESS'` type, or handle error with `'[ACTION]_FAILURE'` type.Don't forget to add your saga into `src/sagas/index.js`.
- 3. Create a reducer in `src/reducers/[ACTION].js`. The main idea here is to put into store an untouched payload. All the logic, that modifies your data, should be in your saga. Don't forget to add your reducer into `src/reducers/index.js`.
- 4. Dispatch an action with type `'[ACTION]_REQUEST'` in your component on some click event or wherever you need it to be dispatched.
+ #
+ 
+ **Async actions**
+ 
+ Inside `src/constants/asyncActions.js` you can find an `'USERS_GET'` action type. Since it is an asynchronous action, it is automatically divided into 3 action types: 
+ `'USERS_GET_REQUEST', 'USERS_GET_SUCCESS', 'USERS_GET_FAILURE'`. The best way to manage that is to use `'USERS_GET_REQUEST'` as a saga pointer, where you can make all your async actions, and depending on result you can call `'USERS_GET_SUCCESS'` or `'USERS_GET_FAILURE'` action, which are used as a reducer pointer to put data into your redux store.
+ 
+ Use *async* action to make http requests and other asynchronous operations
 
-Use *async* action to make http requests and other asynchronous operations, and *sync* actions to handle another actions.
+#
+
+ **Sync actions**
+
+These action type you can create in `src/constants/syncActions.js`. It stays as it is created. by default there is a `'LOADING'` action type that is switching while data is fetching from the server. Depending on that state we can show or hide spinner (or loading message).
+
+---
+
+
 
 
