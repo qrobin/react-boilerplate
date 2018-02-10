@@ -100,7 +100,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "babel-eslint": "^7.2.3",
-    "eslint-plugin-jsx-a11y": "^5.1.1"
+    "babel-eslint": "^8.2.1",
+    "eslint-plugin-jsx-a11y": "^6.0.3"
   }
 }
